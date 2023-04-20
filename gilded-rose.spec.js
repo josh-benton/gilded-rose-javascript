@@ -36,19 +36,18 @@ describe("updateQuality", () => {
 
     expect(testItem.sellIn).toBe(14);
     expect(testItem.quality).toBeGreaterThanOrEqual(0);
-  })
-
+  });
 
   // Test case 4: Quality of Aged Brie increases by 1 as it gets older
   it("Aged Brie increases in quality the older it gets", () => {
-    const testItem = new Item("Aged Brie", 10, 15);
+    const testItem = new Item("Aged Brie", 2, 0);
     items.push(testItem);
 
     updateQuality();
 
-    expect(testItem.sellIn).toBe(9);
-    expect(testItem.quality).toBe(16);
-  })
+    expect(testItem.sellIn).toBe(1);
+    expect(testItem.quality).toBe(1);
+  });
 
   //Test case 5: Quality of an item is never more than 50
   it("quality of item is never greater than 50", () => {
@@ -60,41 +59,22 @@ describe("updateQuality", () => {
     expect(testItem.sellIn).toBe(4);
     expect(testItem.quality).toBe(50);
 
-    updateQuality()
+    updateQuality();
 
     expect(testItem.sellIn).toBe(3);
     expect(testItem.quality).toBe(50);
-  })
+  });
 
+  // Test case 6: Sulfuras, Hand of Ragnaros never has to be sold and does not decrease in quality
+  it("Sulfuras, Hand of Ragnaros needs not be sold and does not decrease in quality", () => {
+    const testItem = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+    items.push(testItem);
 
+    updateQuality();
 
-
-  // it("Aged Brie quality should increase by 1 as it gets older", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const agedBrie = new Item("Aged Brie", 5, 10);
-  //   items.push(agedBrie);
-
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
-
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(agedBrie.sellIn).toBe(4);
-  //   expect(agedBrie.quality).toBe(11);
-  // });
-
-  // // Test case 4: Quality of Aged Brie cannot exceed 50
-  // it("Aged Brie quality should not exceed 50", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const agedBrie = new Item("Aged Brie", 5, 50);
-  //   items.push(agedBrie);
-
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
-
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(agedBrie.sellIn).toBe(4);
-  //   expect(agedBrie.quality).toBe(50);
-  // });
+    expect(testItem.sellIn).toBe(0);
+    expect(testItem.quality).toBe(80);
+  });
 
   // // Test case 5: Quality of Sulfuras does not change and sellIn does not decrease
   // // Test case 5: Quality and sellIn of Sulfuras do not change
