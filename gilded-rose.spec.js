@@ -145,60 +145,57 @@ describe("updateQuality", () => {
     expect(backstagePasses.sellIn).toBe(-1);
     expect(backstagePasses.quality).toBe(0);
   });
-
-
-  // // Test case 8: Conjured items degrade in quality twice as fast as normal items
-  // it("conjured items degrade in quality twice as fast as normal items", () => {
-  //   const testItem = new Item("Conjured Mana Cake", 3, 6);
-  //   items.push(testItem);
-
-  //   updateQuality();
-
-  //   expect(testItem.sellIn).toBe(2);
-  //   expect(testItem.quality).toBe(4);
-  // })
-
-
-
-  // // Test case 9: Quality of conjured items degrades twice as fast as normal items
-  // it("Conjured items quality should degrade twice as fast as normal items", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const conjuredItem = new Item("Conjured", 5, 20);
-  //   items.push(conjuredItem);
-
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
-
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(conjuredItem.sellIn).toBe(4);
-  //   expect(conjuredItem.quality).toBe(18);
-  // });
-
-  // // Test case 10: Quality of conjured items degrades twice as fast as normal items when sellIn is less than 0
-  // it("Conjured items quality should degrade twice as fast as normal items when sellIn is less than 0", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const conjuredItem = new Item("Conjured", -1, 20);
-  //   items.push(conjuredItem);
-
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
-
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(conjuredItem.sellIn).toBe(-2);
-  //   expect(conjuredItem.quality).toBe(16);
-  // });
-
-  // // Test case 11: Quality of conjured items cannot be negative
-  // it("Conjured items quality should not be negative", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const conjuredItem = new Item("Conjured", 5, 0);
-  //   items.push(conjuredItem);
-
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
-
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(conjuredItem.sellIn).toBe(4);
-  //   expect(conjuredItem.quality).toBe(0);
-  // });
 });
+
+// // Test case 11: Conjured items degrade in quality twice as fast as normal items
+// it("conjured items degrade in quality twice as fast as normal items", () => {
+//   const conjuredManaCake = new Item("Conjured Mana Cake", 3, 6);
+//   items.push(conjuredManaCake);
+
+//   updateQuality();
+
+//   expect(conjuredManaCake.sellIn).toBe(2);
+//   expect(conjuredManaCake.quality).toBe(4);
+// })
+
+// // Test case 9: Quality of conjured items degrades twice as fast as normal items
+// it("Conjured items quality should degrade twice as fast as normal items", () => {
+//   // Arrange: Initialize the item with a given quality and sellIn value
+//   const conjuredItem = new Item("Conjured", 5, 20);
+//   items.push(conjuredItem);
+
+//   // Act: Call the updateQuality method to update the item's quality and sellIn values
+//   updateQuality();
+
+//   // Assert: Check if the item's quality and sellIn values match the expected values
+//   expect(conjuredItem.sellIn).toBe(4);
+//   expect(conjuredItem.quality).toBe(18);
+// });
+
+// // Test case 10: Quality of conjured items degrades twice as fast as normal items when sellIn is less than 0
+// it("Conjured items quality should degrade twice as fast as normal items when sellIn is less than 0", () => {
+//   // Arrange: Initialize the item with a given quality and sellIn value
+//   const conjuredItem = new Item("Conjured", -1, 20);
+//   items.push(conjuredItem);
+
+//   // Act: Call the updateQuality method to update the item's quality and sellIn values
+//   updateQuality();
+
+//   // Assert: Check if the item's quality and sellIn values match the expected values
+//   expect(conjuredItem.sellIn).toBe(-2);
+//   expect(conjuredItem.quality).toBe(16);
+// });
+
+// // Test case 11: Quality of conjured items cannot be negative
+// it("Conjured items quality should not be negative", () => {
+//   // Arrange: Initialize the item with a given quality and sellIn value
+//   const conjuredItem = new Item("Conjured", 5, 0);
+//   items.push(conjuredItem);
+
+//   // Act: Call the updateQuality method to update the item's quality and sellIn values
+//   updateQuality();
+
+//   // Assert: Check if the item's quality and sellIn values match the expected values
+//   expect(conjuredItem.sellIn).toBe(4);
+//   expect(conjuredItem.quality).toBe(0);
+// });
