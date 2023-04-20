@@ -1,49 +1,31 @@
-// import { expect, describe, it } from "vitest";
-// import { Item, items, updateQuality } from "./gilded-rose.js";
-
-// describe("updateQuality", () => {
-//   it("reduces quality and sellIn of basic items by 1", () => {
-//     const testItem = new Item("basic", 5, 3);
-//     items.push(testItem);
-
-//     updateQuality();
-
-//     expect(testItem.quality).toBe(2);
-//     expect(testItem.sellIn).toBe(4);
-//   });
-// });
-
 import { expect, describe, it } from "vitest";
 import { Item, items, updateQuality } from "./gilded-rose.js";
 
 describe("updateQuality", () => {
   // Test case 1: Quality and sellIn decrease by 1 for normal items
-  it("Normal item quality and sellIn should decrease by 1", () => {
+  it("normal item quality and sellIn should decrease by 1", () => {
     // Arrange: Initialize the item with a given quality and sellIn value
-    const normalItem = new Item("normal item", 10, 20);
-    items.push(normalItem);
+    const testItem = new Item("basic", 10, 20);
+    items.push(testItem);
 
     // Act: Call the updateQuality method to update the item's quality and sellIn values
     updateQuality();
 
     // Assert: Check if the item's quality and sellIn values match the expected values
-    expect(normalItem.sellIn).toBe(9);
-    expect(normalItem.quality).toBe(19);
+    expect(testItem.sellIn).toBe(9);
+    expect(testItem.quality).toBe(19);
   });
 
-  // // Test case 2: Quality decreases by 2 if sellIn is less than 0 for normal items
-  // it("Normal item quality should decrease by 2 if sellIn is less than 0", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const normalItem = new Item("normal item", -1, 20);
-  //   items.push(normalItem);
+  // Test case 2: Quality decreases by 2 if sellIn is less than 0 for normal items
+  it("Normal item quality should decrease by 2 if sellIn is less than 0", () => {
+    const testItem = new Item("basic", -1, 20);
+    items.push(testItem);
 
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
+    updateQuality();
 
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(normalItem.sellIn).toBe(-2);
-  //   expect(normalItem.quality).toBe(18);
-  // });
+    expect(testItem.sellIn).toBe(-2);
+    expect(testItem.quality).toBe(18);
+  });
 
   // // Test case 3: Quality of Aged Brie increases by 1 as it gets older
   // it("Aged Brie quality should increase by 1 as it gets older", () => {
