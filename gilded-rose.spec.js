@@ -39,11 +39,32 @@ describe("updateQuality", () => {
   })
 
 
-  // Test case 3: Quality of Aged Brie increases by 1 as it gets older
+  // Test case 4: Quality of Aged Brie increases by 1 as it gets older
+  it("Aged Brie increases in quality the older it gets", () => {
+    const testItem = new Item("Aged Brie", 10, 15);
+    items.push(testItem);
 
+    updateQuality();
 
+    expect(testItem.sellIn).toBe(9);
+    expect(testItem.quality).toBe(16);
+  })
 
+  //Test case 5: Quality of an item is never more than 50
+  it("quality of item is never greater than 50", () => {
+    const testItem = new Item("Aged Brie", 5, 50);
+    items.push(testItem);
 
+    updateQuality();
+
+    expect(testItem.sellIn).toBe(4);
+    expect(testItem.quality).toBe(50);
+
+    updateQuality()
+
+    expect(testItem.sellIn).toBe(3);
+    expect(testItem.quality).toBe(50);
+  })
 
 
 
