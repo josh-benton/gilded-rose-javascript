@@ -1,5 +1,5 @@
 import { expect, describe, it, test } from "vitest";
-import { Item, AgedBrie, Sulfuras, items, updateQuality } from "./gilded-rose.js";
+import { Item, AgedBrie, Sulfuras, BackstagePasses, items, updateQuality, Conjured } from "./gilded-rose.js";
 
 describe("updateQuality", () => {
   // Test case 1: Quality and sellIn decrease by 1 for normal items
@@ -51,7 +51,7 @@ describe("updateQuality", () => {
 
   //Test case 5: Quality of an item is never more than 50
   it("quality of item is never greater than 50", () => {
-    const agedBrie = new Item("Aged Brie", 5, 50);
+    const agedBrie = new AgedBrie("Aged Brie", 5, 50);
     items.push(agedBrie);
 
     updateQuality();
@@ -78,7 +78,7 @@ describe("updateQuality", () => {
 
   // Test case 7: Backstage passes increase in quality as sellIn value decreases
   it("backstage passes to TAFKAL80ETC concert increase in quality and decrease in sellIn value", () => {
-    const backstagePasses = new Item(
+    const backstagePasses = new BackstagePasses(
       "Backstage passes to a TAFKAL80ETC concert",
       15,
       20
@@ -93,7 +93,7 @@ describe("updateQuality", () => {
 
   // Test case 8: Backstage passes increase in quality by 2 if sellIn value is 10 days or less
   it("backstage passes to TAFKAL80ETC concert increase in quality by 2 if sellIn value is 10 days or less", () => {
-    const backstagePasses = new Item(
+    const backstagePasses = new BackstagePasses(
       "Backstage passes to a TAFKAL80ETC concert",
       10,
       20
@@ -113,7 +113,7 @@ describe("updateQuality", () => {
 
   // Test case 9: Backstage passes increase in quality by 3 if sellIn value is 5 days or less
   it("backstage passes to TAFKAL80ETC concert increase in quality by 3 if sellIn value is 5 days or less", () => {
-    const backstagePasses = new Item(
+    const backstagePasses = new BackstagePasses(
       "Backstage passes to a TAFKAL80ETC concert",
       5,
       20
@@ -133,7 +133,7 @@ describe("updateQuality", () => {
 
   // Test case 10: Backstage passes quality drops to 0 after the concert
   it("backstage passes to TAFKAL80ETC concert quality drops to 0 after the concert", () => {
-    const backstagePasses = new Item(
+    const backstagePasses = new BackstagePasses(
       "Backstage passes to a TAFKAL80ETC concert",
       0,
       20
@@ -146,3 +146,14 @@ describe("updateQuality", () => {
     expect(backstagePasses.quality).toBe(0);
   });
 });
+
+// Test case 11: Conjured items degrade in quality twice as fast as normal items
+it("conjured items degrade in quality twice as fast as normal items", () => {
+  const conjuredItems = new Conjured("Conjured Mana Cake", 3, 6);
+  items.push(conjuredItems);
+
+  updateQuality();
+
+  expect(conjuredItems.sellIn).toBe(2);
+  expect(conjuredItems.quality).toBe(4);
+})
