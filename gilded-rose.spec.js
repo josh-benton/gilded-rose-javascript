@@ -17,7 +17,7 @@ describe("updateQuality", () => {
   });
 
   // Test case 2: Quality decreases by 2 if sellIn is less than 0 for normal items
-  it("Normal item quality should decrease by 2 if sellIn is less than 0", () => {
+  it("normal item quality should decrease by 2 if sellIn is less than 0", () => {
     const testItem = new Item("basic", -1, 20);
     items.push(testItem);
 
@@ -27,7 +27,27 @@ describe("updateQuality", () => {
     expect(testItem.quality).toBe(18);
   });
 
-  // // Test case 3: Quality of Aged Brie increases by 1 as it gets older
+  // Test case 3: Quality of item is never negative
+  it("quality of item is never negative", () => {
+    const testItem = new Item("basic", 15, 0);
+    items.push(testItem);
+
+    updateQuality();
+
+    expect(testItem.sellIn).toBe(14);
+    expect(testItem.quality).toBeGreaterThanOrEqual(0);
+  })
+
+
+  // Test case 3: Quality of Aged Brie increases by 1 as it gets older
+
+
+
+
+
+
+
+
   // it("Aged Brie quality should increase by 1 as it gets older", () => {
   //   // Arrange: Initialize the item with a given quality and sellIn value
   //   const agedBrie = new Item("Aged Brie", 5, 10);
