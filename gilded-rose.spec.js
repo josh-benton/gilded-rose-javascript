@@ -1,4 +1,4 @@
-import { expect, describe, it } from "vitest";
+import { expect, describe, it, test } from "vitest";
 import { Item, items, updateQuality } from "./gilded-rose.js";
 
 describe("updateQuality", () => {
@@ -40,133 +40,125 @@ describe("updateQuality", () => {
 
   // Test case 4: Quality of Aged Brie increases by 1 as it gets older
   it("Aged Brie increases in quality the older it gets", () => {
-    const testItem = new Item("Aged Brie", 2, 0);
-    items.push(testItem);
+    const agedBrie = new Item("Aged Brie", 2, 0);
+    items.push(agedBrie);
 
     updateQuality();
 
-    expect(testItem.sellIn).toBe(1);
-    expect(testItem.quality).toBe(1);
+    expect(agedBrie.sellIn).toBe(1);
+    expect(agedBrie.quality).toBe(1);
   });
 
   //Test case 5: Quality of an item is never more than 50
   it("quality of item is never greater than 50", () => {
-    const testItem = new Item("Aged Brie", 5, 50);
-    items.push(testItem);
+    const agedBrie = new Item("Aged Brie", 5, 50);
+    items.push(agedBrie);
 
     updateQuality();
 
-    expect(testItem.sellIn).toBe(4);
-    expect(testItem.quality).toBe(50);
+    expect(agedBrie.sellIn).toBe(4);
+    expect(agedBrie.quality).toBe(50);
 
     updateQuality();
 
-    expect(testItem.sellIn).toBe(3);
-    expect(testItem.quality).toBe(50);
+    expect(agedBrie.sellIn).toBe(3);
+    expect(agedBrie.quality).toBe(50);
   });
 
   // Test case 6: Sulfuras, Hand of Ragnaros never has to be sold and does not decrease in quality
   it("Sulfuras, Hand of Ragnaros needs not be sold and does not decrease in quality", () => {
-    const testItem = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
-    items.push(testItem);
+    const sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+    items.push(sulfuras);
 
     updateQuality();
 
-    expect(testItem.sellIn).toBe(0);
-    expect(testItem.quality).toBe(80);
+    expect(sulfuras.sellIn).toBe(0);
+    expect(sulfuras.quality).toBe(80);
   });
 
   // Test case 7: Backstage passes increase in quality as sellIn value decreases
   it("backstage passes to TAFKAL80ETC concert increase in quality and decrease in sellIn value", () => {
-    const testItem = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20);
-    items.push(testItem);
+    const backstagePasses = new Item(
+      "Backstage passes to a TAFKAL80ETC concert",
+      15,
+      20
+    );
+    items.push(backstagePasses);
 
     updateQuality();
 
-    expect(testItem.sellIn).toBe(10);
-    expect(testItem.quality).toBe(21);
+    expect(backstagePasses.sellIn).toBe(14);
+    expect(backstagePasses.quality).toBe(21);
+  });
 
-    updateQuality();
-   
-    expect(testItem.sellIn).toBe(9);
-    expect(testItem.quality).toBe(23);
-
-    updateQuality();
-    updateQuality();
-    updateQuality();
-    updateQuality();
-    updateQuality();
-
-    expect(testItem.sellIn).toBe(4);
-    expect(testItem.quality).toBe(34);
-
-    updateQuality();
-    updateQuality();
-    updateQuality();
-    updateQuality();
-
-    expect(testItem.sellIn).toBe(0);
-    expect(testItem.quality).toBe(46);
+  // Test case 8: Backstage passes increase in quality by 2 if sellIn value is 10 days or less
+  it("backstage passes to TAFKAL80ETC concert increase in quality by 2 if sellIn value is 10 days or less", () => {
+    const backstagePasses = new Item(
+      "Backstage passes to a TAFKAL80ETC concert",
+      10,
+      20
+    );
+    items.push(backstagePasses);
 
     updateQuality();
 
-    expect(testItem.sellIn).toBe(-1);
-    expect(testItem.quality).toBe(0);
-  })
+    expect(backstagePasses.sellIn).toBe(9);
+    expect(backstagePasses.quality).toBe(22);
 
-  // // Test case 6: Quality of Backstage passes increases by 2 when there are 10 days or less left before the concert
-  // it("Backstage passes quality should increase by 2 when there are 10 days or less left before the concert", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const backstagePass = new Item(
-  //     "Backstage passes to a TAFKAL80ETC concert",
-  //     10,
-  //     20
-  //   );
-  //   items.push(backstagePass);
+    updateQuality();
 
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
+    expect(backstagePasses.sellIn).toBe(8);
+    expect(backstagePasses.quality).toBe(24);
+  });
+
+  // Test case 9: Backstage passes increase in quality by 3 if sellIn value is 5 days or less
+  it("backstage passes to TAFKAL80ETC concert increase in quality by 3 if sellIn value is 5 days or less", () => {
+    const backstagePasses = new Item(
+      "Backstage passes to a TAFKAL80ETC concert",
+      5,
+      20
+    );
+    items.push(backstagePasses);
+
+    updateQuality();
+
+    expect(backstagePasses.sellIn).toBe(4);
+    expect(backstagePasses.quality).toBe(23);
+
+    updateQuality();
+
+    expect(backstagePasses.sellIn).toBe(3);
+    expect(backstagePasses.quality).toBe(26);
+  });
+
+  // Test case 10: Backstage passes quality drops to 0 after the concert
+  it("backstage passes to TAFKAL80ETC concert quality drops to 0 after the concert", () => {
+    const backstagePasses = new Item(
+      "Backstage passes to a TAFKAL80ETC concert",
+      0,
+      20
+    );
+    items.push(backstagePasses);
+
+    updateQuality();
+
+    expect(backstagePasses.sellIn).toBe(-1);
+    expect(backstagePasses.quality).toBe(0);
+  });
+
+
+  // // Test case 8: Conjured items degrade in quality twice as fast as normal items
+  // it("conjured items degrade in quality twice as fast as normal items", () => {
+  //   const testItem = new Item("Conjured Mana Cake", 3, 6);
+  //   items.push(testItem);
+
   //   updateQuality();
 
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(backstagePass.sellIn).toBe(9);
-  //   expect(backstagePass.quality).toBe(22);
-  // });
+  //   expect(testItem.sellIn).toBe(2);
+  //   expect(testItem.quality).toBe(4);
+  // })
 
-  // // Test case 7: Quality of Backstage passes increases by 3 when there are 5 days or less left before the concert
-  // it("Backstage passes quality should increase by 3 when there are 5 days or less left before the concert", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const backstagePass = new Item(
-  //     "Backstage passes to a TAFKAL80ETC concert",
-  //     5,
-  //     20
-  //   );
-  //   items.push(backstagePass);
 
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
-
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(backstagePass.sellIn).toBe(4);
-  //   expect(backstagePass.quality).toBe(23);
-  // });
-
-  // // Test case 8: Quality of Backstage passes drops to 0 after the concert
-  // it("Backstage passes quality should drop to 0 after the concert", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const backstagePass = new Item(
-  //     "Backstage passes to a TAFKAL80ETC concert",
-  //     0,
-  //     20
-  //   );
-  //   items.push(backstagePass);
-
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
-
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(backstagePass.sellIn).toBe(-1);
-  //   expect(backstagePass.quality).toBe(0);
-  // });
 
   // // Test case 9: Quality of conjured items degrades twice as fast as normal items
   // it("Conjured items quality should degrade twice as fast as normal items", () => {
