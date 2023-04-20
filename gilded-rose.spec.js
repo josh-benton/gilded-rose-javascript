@@ -1,5 +1,5 @@
 import { expect, describe, it, test } from "vitest";
-import { Item, AgedBrie, items, updateQuality } from "./gilded-rose.js";
+import { Item, AgedBrie, Sulfuras, items, updateQuality } from "./gilded-rose.js";
 
 describe("updateQuality", () => {
   // Test case 1: Quality and sellIn decrease by 1 for normal items
@@ -67,7 +67,7 @@ describe("updateQuality", () => {
 
   // Test case 6: Sulfuras, Hand of Ragnaros never has to be sold and does not decrease in quality
   it("Sulfuras, Hand of Ragnaros needs not be sold and does not decrease in quality", () => {
-    const sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+    const sulfuras = new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80);
     items.push(sulfuras);
 
     updateQuality();

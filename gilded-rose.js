@@ -32,6 +32,12 @@ export class AgedBrie extends Item {
   }
 }
 
+export class Sulfuras extends Item {
+  updateQuality() {
+    
+  }
+}
+
 export const updateQuality = () => {
   for (let item of items) {
     item.updateQuality();
