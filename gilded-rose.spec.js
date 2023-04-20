@@ -76,22 +76,43 @@ describe("updateQuality", () => {
     expect(testItem.quality).toBe(80);
   });
 
-  // // Test case 5: Quality of Sulfuras does not change and sellIn does not decrease
-  // // Test case 5: Quality and sellIn of Sulfuras do not change
-  // it("Sulfuras quality and sellIn should not change", () => {
-  //   // Arrange: Initialize the item with a given quality and sellIn value
-  //   const sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
-  //   items.push(sulfuras);
-  //   const originalQuality = sulfuras.quality;
-  //   const originalSellIn = sulfuras.sellIn;
+  // Test case 7: Backstage passes increase in quality as sellIn value decreases
+  it("backstage passes to TAFKAL80ETC concert increase in quality and decrease in sellIn value", () => {
+    const testItem = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20);
+    items.push(testItem);
 
-  //   // Act: Call the updateQuality method to update the item's quality and sellIn values
-  //   updateQuality();
+    updateQuality();
 
-  //   // Assert: Check if the item's quality and sellIn values match the expected values
-  //   expect(sulfuras.sellIn).toBe(originalSellIn);
-  //   expect(sulfuras.quality).toBe(originalQuality);
-  // });
+    expect(testItem.sellIn).toBe(10);
+    expect(testItem.quality).toBe(21);
+
+    updateQuality();
+   
+    expect(testItem.sellIn).toBe(9);
+    expect(testItem.quality).toBe(23);
+
+    updateQuality();
+    updateQuality();
+    updateQuality();
+    updateQuality();
+    updateQuality();
+
+    expect(testItem.sellIn).toBe(4);
+    expect(testItem.quality).toBe(34);
+
+    updateQuality();
+    updateQuality();
+    updateQuality();
+    updateQuality();
+
+    expect(testItem.sellIn).toBe(0);
+    expect(testItem.quality).toBe(46);
+
+    updateQuality();
+
+    expect(testItem.sellIn).toBe(-1);
+    expect(testItem.quality).toBe(0);
+  })
 
   // // Test case 6: Quality of Backstage passes increases by 2 when there are 10 days or less left before the concert
   // it("Backstage passes quality should increase by 2 when there are 10 days or less left before the concert", () => {
