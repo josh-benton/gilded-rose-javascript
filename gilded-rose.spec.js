@@ -1,5 +1,13 @@
-import { expect, describe, it, test } from "vitest";
-import { Item, AgedBrie, Sulfuras, BackstagePasses, items, updateQuality, Conjured } from "./gilded-rose.js";
+import { expect, describe, it } from "vitest";
+import {
+  Item,
+  AgedBrie,
+  Sulfuras,
+  BackstagePasses,
+  items,
+  updateQuality,
+  Conjured,
+} from "./gilded-rose.js";
 
 describe("updateQuality", () => {
   // Test case 1: Quality and sellIn decrease by 1 for normal items
@@ -156,4 +164,4 @@ it("conjured items degrade in quality twice as fast as normal items", () => {
 
   expect(conjuredItems.sellIn).toBe(2);
   expect(conjuredItems.quality).toBe(4);
-})
+});

@@ -61,10 +61,10 @@ export class BackstagePasses extends Item {
 export class Conjured extends Item {
   updateQuality() {
     if (this.quality > 0) {
-      this.quality -=2;
+      this.quality -= 2;
     }
 
-    this.sellIn -=1;
+    this.sellIn -= 1;
   }
 }
 
